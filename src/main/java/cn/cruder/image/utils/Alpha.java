@@ -49,8 +49,16 @@ public class Alpha {
                 }
             }
             g2D.drawImage(bufferedImage, 0, 0, imageIcon.getImageObserver());
+
+            File imgTargetFile = new File(imgTarget);
+            String parent = imgTargetFile.getParent();
+            File parentFile = new File(parent);
+            if (!parentFile.exists()) {
+                parentFile.mkdir();
+            }
+
             // 直接输出文件
-            result = ImageIO.write(bufferedImage, "png", new File(imgTarget));
+            result = ImageIO.write(bufferedImage, "png", imgTargetFile);
             // 直接输出文件
             //result = ImageIO.write(bufferedImage, "jpg", new File(imgTarget));
         } catch (Exception e) {
